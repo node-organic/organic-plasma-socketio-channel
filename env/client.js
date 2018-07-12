@@ -2,10 +2,15 @@ const io = require('socket.io-client')
 
 module.exports = class SocketIOClientChannel {
   constructor (plasma, dna) {
+    if (!dna.port && !dna.endpoint) throw new Error('port or endpoint required in dna')
     this.idMarker = Math.random()
     this.plasma = plasma
     this.dna = dna
-    this.io = io(`http://localhost:${dna.port}`, {
+    let connectStr = `http://localhost:${dna.port}`
+    if (dna.endpoint) {
+      connectStr = dna.endpoint
+    }
+    this.io = io(connectStr, {
       transports: ['websocket']
     })
     this.io.on('chemical', (c, callback) => {
@@ -13,6 +18,11 @@ module.exports = class SocketIOClientChannel {
       this.plasma.emit(c, callback)
     })
     this.plasma.on(dna.transportChemicalsShape, this.transportChemical, this)
+    if (dna.emitReady) {
+      this.io.on('connect', () => {
+        plasma.emit(dna.emitReady)
+      })
+    }
   }
 
   transportChemical (c, callback) {

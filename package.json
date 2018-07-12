@@ -1,11 +1,14 @@
 {
   "name": "organic-plasma-socketio-channel",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "./env/server",
   "browser": "./env/browser",
   "description": "",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "release-patch": "npm run test && npm version patch && npm publish && git push --tags && git push origin master",
+    "release-minor": "npm run test && npm version minor && npm publish && git push --tags && git push origin master",
+    "release-major": "npm run test && npm version major && npm publish && git push --tags && git push origin master"
   },
   "author": "Boris Filipov",
   "license": "MIT",
@@ -17,6 +20,10 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^22.4.2"
+    "jest": "^22.4.2",
+    "organic-plasma": "^2.1.0",
+    "organic-socketio-server": "^2.0.1",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1"
   }
 }
