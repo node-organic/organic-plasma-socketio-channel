@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "./env/server",
   "browser": "./env/browser",
-  "description": "",
+  "description": "A cross browser <-> server two-way channel based on socketio",
   "scripts": {
     "test": "jest",
     "release-patch": "npm run test && npm version patch && npm publish && git push --tags && git push origin master",
@@ -25,5 +25,13 @@
     "organic-socketio-server": "^2.0.1",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-organic/organic-plasma-socketio-channel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/node-organic/organic-plasma-socketio-channel/issues"
+  },
+  "homepage": "https://github.com/node-organic/organic-plasma-socketio-channel#readme"
 }
