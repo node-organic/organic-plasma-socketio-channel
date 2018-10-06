@@ -4,7 +4,6 @@ module.exports = class SocketIOServerChannel {
     this.plasma = plasma
     this.dna = dna
     this.sockets = []
-    console.log(dna)
     this.plasma.on(dna.reactOnConnection, this.handleConnection, this)
     this.plasma.on(dna.transportChemicalsShape, this.transportChemical, this)
     if (dna.log) console.info('pipe plasma chemicals via socketio', dna.transportChemicalsShape)
@@ -18,7 +17,7 @@ module.exports = class SocketIOServerChannel {
       this.plasma.emit(c, callback)
     })
     socket.on('disconnect', () => {
-      this.sockets.splice(this.sockets.indexOf(c.socket), 1)
+      this.sockets.splice(this.sockets.indexOf(socket), 1)
     })
   }
 
