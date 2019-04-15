@@ -20,7 +20,7 @@ module.exports = class SocketIOClientChannel {
     this.plasma.on(dna.transportChemicalsShape, this.transportChemical, this)
     if (dna.emitReady) {
       this.io.on('connect', () => {
-        plasma.emit(dna.emitReady)
+        plasma.emit({type: dna.emitReady, io: this.io})
       })
     }
   }
