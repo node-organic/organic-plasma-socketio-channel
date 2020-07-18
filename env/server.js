@@ -12,19 +12,19 @@ module.exports = class SocketIOServerChannel {
   handleConnection (c) {
     let socket = c[this.dna.socketPropertyName || 'socket']
     this.sockets.push(socket)
-    socket.on('chemical', (c, callback) => {
+    socket.on('chemical', (c) => {
       Object.defineProperty(c, this.idMarker, {enumerable: false, value: true})
-      this.plasma.emit(c, callback)
+      this.plasma.emit(c)
     })
     socket.on('disconnect', () => {
       this.sockets.splice(this.sockets.indexOf(socket), 1)
     })
   }
 
-  transportChemical (c, callback) {
+  transportChemical (c) {
     if (c[this.idMarker]) return
     this.sockets.forEach(socket => {
-      socket.emit('chemical', c, callback)
+      socket.emit('chemical', c)
     })
   }
 }

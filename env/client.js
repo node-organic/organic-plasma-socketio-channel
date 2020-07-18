@@ -13,9 +13,9 @@ module.exports = class SocketIOClientChannel {
     this.io = io(connectStr, {
       transports: ['websocket']
     })
-    this.io.on('chemical', (c, callback) => {
+    this.io.on('chemical', (c) => {
       Object.defineProperty(c, this.idMarker, {enumerable: false, value: true})
-      this.plasma.emit(c, callback)
+      this.plasma.emit(c)
     })
     this.plasma.on(dna.transportChemicalsShape, this.transportChemical, this)
     if (dna.emitReady) {
@@ -28,8 +28,8 @@ module.exports = class SocketIOClientChannel {
     }
   }
 
-  transportChemical (c, callback) {
+  transportChemical (c) {
     if (c[this.idMarker]) return
-    this.io.emit('chemical', c, callback)
+    this.io.emit('chemical', c)
   }
 }

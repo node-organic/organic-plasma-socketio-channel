@@ -21,7 +21,7 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.2",
-    "organic-plasma": "^2.1.0",
+    "organic-plasma": "^4.1.0",
     "organic-socketio-server": "^2.0.1",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1"
